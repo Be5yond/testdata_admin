@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>测试数据管理</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+  <link rel="stylesheet" href="sdk\sdk.css" />
+  <style>
+    html,
+    body,
+    .app-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="root" class="app-wrapper"></div>
+  <script src="sdk\sdk.js"></script>
+  <script type="text/javascript">
+    (function () {
+      let amis = amisRequire('amis/embed');
+      // 通过替换下面这个配置来生成不同页面
+      let amisScoped = amis.embed('#root',
+        {
+          "type": "page",
+          "toolbar": [
+          ],
+          "body": [
+            {
+              "type": "crud",
+              "api": "testdata",
+              "name": "sheet",
+              "filter": {
+                "title": "条件搜索",
+                "submitText": "",
+                "controls": [
+                  {
+                    "type": "text",
+                    "name": "module",
+                    "placeholder": "模块" 
+                  },
+                  {
+                    "type": "text",
+                    "name": "epic",
+                    "placeholder": "EPIC" 
+                  },
+                  {
+                    "label": "搜索",
+                    "type": "button",
+                    // "size": "md",
+                    "level": "light",
+                    "actionType": "submit",
+                    "className": "m-b-sm",
+                    "icon": "fa fa-search pull-left",
+                  },
+                  {
+                    "label": "新增",
+                    "type": "button",
+                    "actionType": "dialog",
+                    "level": "primary",
+                    "className": "m-b-sm pull-right",
+                    "icon": "fa fa-plus pull-left",
+                    "dialog": {
+                      "size": "xl",
+                      "title": "新增表单",
+                      "body": {
+                        "type": "form",
+                        "api": "post:testdata",
+                        "controls": [
+                          {
+                            "type": "text",
+                            "name": "title",
+                            "label": "title"
+                          },
+                          {
+                            "type": "text",
+                            "name": "description",
+                            "label": "description"
+                          },
+                          {
+                            "type": "group",
+                            "controls": [
+                              {
+                                "type": "text",
+                                "name": "module",
+                                "label": "module"
+                              },
+                              {
+                                "type": "text",
+                                "name": "epic",
+                                "label": "epic"
+                              },
+                              {
+                                "type": "text",
+                                "name": "method",
+                                "label": "method"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "name": "precondition",
+                            "label": "precondition"
+                          },
+                          {
+                            "name": "step",
+                            "type": "editor",
+                            "language": "json",
+                            "label": "step",
+                            "value": ""
+                          },
+                          {
+                            "name": "schema",
+                            "type": "editor",
+                            "language": "json",
+                            "label": "schema",
+                          }
+                        ]
+                      }
+                    }
+                  },
+                ]
+              },
+              "columns": [
+                {
+                  "name": "id",
+                  "label": "ID"
+                },
+                {
+                  "name": "title",
+                  "label": "title"
+                },
+                {
+                  "name": "description",
+                  "label": "description"
+                },
+                {
+                  "name": "epic",
+                  "label": "epic"
+                },
+                {
+                  "name": "method",
+                  "label": "method"
+                },
+                {
+                  "name": "precondition",
+                  "label": "precondition"
+                },
+                {
+                  "type": "json",
+                  "name": "step",
+                  "label": "step"
+                },
+                {
+                  "type": "json",
+                  "name": "schema",
+                  "label": "schema"
+                },
+                {
+                  "name": "module",
+                  "label": "module",
+                  "filterable": {
+                    "options": [
+                      'scas',
+                      'B',
+                      'C',
+                      'D'
+                    ]
+                  }
+                },
+                {
+                  "type": "operation",
+                  "label": "操作",
+                  "buttons": [
+                    {
+                      "label": "修改",
+                      "type": "button",
+                      "level": "secondary",
+                      "icon": "fa fa-edit pull-left",
+                      "actionType": "dialog",
+                      "dialog": {
+                        "size": "xl",
+                        "title": "修改表单",
+                        "body": {
+                          "type": "form",
+                          "api": "put:testdata/${id}",
+                          "controls": [
+                          {
+                            "type": "text",
+                            "name": "title",
+                            "label": "title"
+                          },
+                          {
+                            "type": "text",
+                            "name": "description",
+                            "label": "description"
+                          },
+                          {
+                            "type": "group",
+                            "controls": [
+                              {
+                                "type": "text",
+                                "name": "module",
+                                "label": "module"
+                              },
+                              {
+                                "type": "text",
+                                "name": "epic",
+                                "label": "epic"
+                              },
+                              {
+                                "type": "text",
+                                "name": "method",
+                                "label": "method"
+                              }
+                            ]
+                          },
+                          {
+                            "type": "text",
+                            "name": "precondition",
+                            "label": "precondition"
+                          },
+                          {
+                            "name": "step",
+                            "type": "editor",
+                            "language": "json",
+                            "label": "step",
+                            "value": ""
+                          },
+                          {
+                            "name": "schema",
+                            "type": "editor",
+                            "language": "json",
+                            "label": "schema",
+                          }
+                        
+                          ],
+                            "actions": [{
+                              "type": "button",
+                              "label": "百度一下",
+                              "url": "https://www.baidu.com/"
+                            }]
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      );
+    })();
+  </script>
+</body>
+
+</html>
